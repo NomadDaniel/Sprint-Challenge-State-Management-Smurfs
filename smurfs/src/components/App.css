@@ -1,3 +1,38 @@
 .App {
   text-align: center;
+  background-image: url('../images/smurf1.jpg');
+  background-size: contain;
+  /* opacity: 50%; */
 }
+.smurf {
+  border-radius: 8px;
+	background:skyblue;
+	/* transition: 0.2s ease-in-out; */
+  padding: 1%;
+  width: 35%;
+  margin: auto;
+  margin-top: 1%;
+  border: 2px solid;
+  opacity: 70%;
+  display: flex;
+  justify-content: center;
+  /* flex-direction: row; */
+	}
+
+button {
+    width: 25%;
+    font-size: 1rem;
+    border-radius: 8px;
+		border: 2px solid lightseagreen;
+		padding: 1%;
+		background: red;
+		/* transition: 0.15s ease-in-out; */
+		margin: 2%;
+		color: white;
+    /* text-align: center; */
+}
+ button:hover {
+        cursor: pointer;
+        background: lightcoral;
+        color: white;
+      }
