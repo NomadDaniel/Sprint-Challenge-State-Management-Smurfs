@@ -22,9 +22,9 @@ const Form = ( props ) => {
 
   const handleChanges = e => {
     let name = e.target.name;
-
     setNewSmurf( { ...newSmurf, [ name ]: e.target.value } );
   };
+
   return (
     <div>
       <form>
@@ -34,7 +34,6 @@ const Form = ( props ) => {
         <br /><br />
         <input name="height" type="text" placeholder="Smurf's Height" value={ smurfData.height } onChange={ handleChanges } />
         <br /><br />
-
         <button type="submit" onClick={ handleSubmit }>Add New Smurf</button>
       </form>
     </div>

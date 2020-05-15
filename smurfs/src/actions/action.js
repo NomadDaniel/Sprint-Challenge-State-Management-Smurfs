@@ -10,7 +10,6 @@ export const ADDING_SMURF_FAILURE = "ADDING_SMURF_FAILURE";
 
 export const fetchData = () => dispatch => {
   dispatch( { type: FETCHING_DATA } );
-
   axios.get( 'http://localhost:3333/smurfs' )
     .then( response => dispatch( { type: FETCHING_COMPLETE, payload: response.data } ) )
     .catch( error => dispatch( { FETCHING_FAIL, payload: error.response } ) );
@@ -18,7 +17,6 @@ export const fetchData = () => dispatch => {
 
 export const addSmurf = ( smurf ) => dispatch => {
   dispatch( { type: ADDING_SMURF_START } );
-
   axios
     .post( "http://localhost:3333/smurfs", smurf )
     .then( response => {
