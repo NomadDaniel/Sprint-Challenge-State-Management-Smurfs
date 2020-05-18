@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { addSmurf } from '../store/action';
+import { addSmurf, editSmurf } from '../store/action';
 
 const SmurfForm = props => {
-  const { addSmurf, isLoading } = props;
-  const [ newSmurf, setNewSmurf ] = useState( { name: '', age: '', height: '' } );
+  const { addSmurf, isLoading, editSmurf, item } = props;
+  const [ newSmurf, setNewSmurf ] = useState(
+    item
+      ? { name: item.name, age: item.age, height: item.height }
+      : { name: '', age: '', height: '' }
+  );
 
   const handleChange = e => {
     setNewSmurf( { ...newSmurf, [ e.target.name ]: e.target.value } );
+    console.log( "change", newSmurf );
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    addSmurf( newSmurf );
+    item
+      ? editSmurf( item.id, newSmurf )
+      : addSmurf( newSmurf );
     setNewSmurf( { name: '', age: '', height: '' } );
   };
 
@@ -27,7 +34,9 @@ const SmurfForm = props => {
 
   return (
     <form onSubmit={ handleSubmit }>
-      <h2>Add New Smurf</h2>
+      <h2>{ item
+        ? `Update Smurf here`
+        : `Add New Smurf` }</h2>
       <input
         type='text'
         name='name'
@@ -49,7 +58,9 @@ const SmurfForm = props => {
         value={ newSmurf.height }
         onChange={ handleChange }
       />
-      <button type="submit"> Add Smurf</button>
+      <button type="submit"> { item
+        ? `Update Smurf`
+        : `Add Smurf` }</button>
     </form>
   );
 };
@@ -61,4 +72,4 @@ const mapStateToProps = state => {
     error: state.error,
   };
 };
-export default connect( mapStateToProps, { addSmurf } )( SmurfForm );
+export default connect( mapStateToProps, { addSmurf, editSmurf } )( SmurfForm );

@@ -57,3 +57,16 @@ export const deleteSmurf = id => dispatch => {
       dispatch( { type: DELETE_SMURF_FAILURE, payLoad: err } );
     } );
 };
+
+export const editSmurf = ( id, changes ) => dispatch => {
+  dispatch( { type: EDIT_SMURF_START } );
+  axios
+    .put( `${ baseURL }/${ id }`, changes )
+    .then( res => {
+      console.log( "edit smurf", res.data );
+      dispatch( { type: EDIT_SMURF_SUCCESS, payLoad: res.data } );
+    } )
+    .catch( ( err => {
+      dispatch( { type: EDIT_SMURF_FAILURE, payLoad: err } );
+    } ) );
+};
